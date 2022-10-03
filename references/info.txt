@@ -1,0 +1,9 @@
+https://github.com/monperrus/crawler-user-agents
+
+https://machinelearningmastery.com/how-to-develop-a-word-level-neural-language-model-in-keras/
+
+https://machinelearningmastery.com/prepare-text-data-machine-learning-scikit-learn/
+
+https://machinelearningmastery.com/develop-neural-machine-translation-system-keras/
+
+https://towardsdatascience.com/email-spam-detection-1-2-b0e06a5c0472
