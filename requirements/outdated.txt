@@ -1,0 +1,7 @@
+Package    Version Latest Type
+---------- ------- ------ -----
+colorama   0.4.4   0.4.5  wheel
+docutils   0.16    0.19   wheel
+PyYAML     5.4.1   6.0    wheel
+rsa        4.7.2   4.9    wheel
+setuptools 65.3.0  65.4.1 wheel

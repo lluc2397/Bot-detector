@@ -25,12 +25,15 @@ test_environment:
 	
 ## Install Python Dependencies
 requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+	./requirements/requirements.sh "temp_venv/bin/pip"
+	rm -rf temp_venv/
 
 ## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+data:
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py --data_from $(data_from) --data_to $(data_to)
+
+interim_data:
+	make data data_from="raw" data_to="interim"
 
 ## Delete all compiled Python files
 clean:

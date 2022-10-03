@@ -4,20 +4,32 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 
+from src.data.process_data import arrange_data
+
 
 @click.command()
-@click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
-    """ Runs data processing scripts to turn raw data from (../raw) into
-        cleaned data ready to be analyzed (saved in ../processed).
+@click.option("--data_from", default="raw", show_default=True)
+@click.option("--data_to", default="interim", show_default=True)
+def main(data_from: str, data_to: str):
+    """Runs data processing scripts to turn raw data from (../raw) into
+    cleaned data ready to be analyzed (saved in ../processed).
     """
     logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+    logger.info(f"moving {data_from} data set to {data_to} data")
+    if data_from == "raw" and data_to == "interim":
+        arrange_data()
+    elif data_from == "raw" and data_to == "processed":
+        pass
+    elif data_from == "interim" and data_to == "processed":
+        pass
+    elif data_from == "external" and data_to == "interim":
+        pass
+    elif data_from == "external" and data_to == "processed":
+        pass
 
 
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+if __name__ == "__main__":
+    log_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     logging.basicConfig(level=logging.INFO, format=log_fmt)
 
     # not used in this stub but often useful for finding various files

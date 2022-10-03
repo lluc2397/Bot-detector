@@ -37,17 +37,19 @@ def arrange_data():
             "postal_code",
         ]
     )
-    visiteurs["HTTP_USER_AGENT"] = visiteurs["HTTP_USER_AGENT"].fillna("bot")
+    visiteurs["http_user_agent"] = visiteurs["http_user_agent"].fillna("bot")
     visiteurs.loc[
-        visiteurs["HTTP_USER_AGENT"].str.contains(
+        visiteurs["http_user_agent"].str.contains(
             "|".join(["python", "java", "go", "twitter", "facebook", "requests", "bot"])
         ),
         "is_bot",
-    ] = True
+    ] = 1
     visiteurs_journey = pd.read_csv(f"{DATA_DIR}/raw/visits_historial_visiteurs.csv")
     visiteurs_journey = visiteurs_journey.drop(columns=["id", "parsed", "comes_from"])
     total_seo = pd.merge(visiteurs_journey, visiteurs, on=["user_id"])
-    total_seo = total_seo[total_seo.current_path != "/webmanifest.json"]
+    total_seo = total_seo[
+        total_seo["current_path"].str.contains("webmanifest.json") == False
+    ]
     total_seo.loc[
         ~total_seo["current_path"].str.contains(
             "|".join(
@@ -61,7 +63,7 @@ def arrange_data():
             )
         ),
         "is_bot",
-    ] = True
+    ] = 1
     total_seo["current_path"] = total_seo.apply(
         lambda row: check_correct_path(row.current_path), axis=1
     )
@@ -73,6 +75,9 @@ def arrange_data():
         ],
         axis=1,
         join="inner",
+    )
+    total_seo["current_path"] = total_seo["current_path"].map(
+        lambda x: x.replace("'", "")
     )
     total_seo = total_seo.drop(columns=["user_id", "country_code"])
     total_seo.to_csv(f"{DATA_DIR}/interim/merged_csv.csv", index=False)
