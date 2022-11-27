@@ -9,5 +9,6 @@
         // "-n 8",
         "--tb=long",
         "-rAf"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }

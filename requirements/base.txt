@@ -38,3 +38,5 @@ numpy
 click
 awscli
 python-dotenv>=0.5.1
+pyarrow
+fastparquet
