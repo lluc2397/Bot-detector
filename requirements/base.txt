@@ -38,5 +38,14 @@ numpy
 click
 awscli
 python-dotenv>=0.5.1
+
+# Files manipulation
+# ------------------------------------------------------------------------------
+openpyxl
 pyarrow
 fastparquet
+
+# AI
+# ------------------------------------------------------------------------------
+scikit-learn
+xgboost

@@ -10,5 +10,9 @@
         "--tb=long",
         "-rAf"
     ],
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.mypyEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pycodestyleEnabled": true,
 }
