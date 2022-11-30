@@ -49,3 +49,5 @@ fastparquet
 # ------------------------------------------------------------------------------
 scikit-learn
 xgboost
+keras
+tensorflow-gpu
